@@ -1,5 +1,5 @@
 # search - With Better UX
-`search` is a program to search the desired folder/file in your file system. `search` is similar to the `find` and `fd` program, but provide a better user experience to select specific search result.
+`search` is a program to search the desired folder/file in your file system. `search` is similar to the `find` and `fd` program, but provides a better user experience to select a specific search result.
 
 ## No More Copy & Paste
 ![Demon-1](asset/demo.gif)
@@ -21,19 +21,19 @@
       ```
 
 ## How to Use
-The program use the following syntax:
+The program uses the following syntax:
 ```bash
 search [OPTIONS]... [PATTERN]
 ```
 ### Pattern
-The program supports searching with the use of REgex. For exmaple,
+The program supports searching with the use of REgex. For example,
 
-`search \.cpp$` - to search all the file end with cpp extension in the current working directory.
+`search \.cpp$` - to search all the files end with cpp extension in the current working directory.
 
-`search cpp` - to search all the file/folder contains the word `cpp`.
+`search cpp` - to search all the files/folders containing the word `cpp`.
 
 ### Options
-Currently, the program only supports to the flags `-s`, `-source`.
+Currently, the program only supports the flags `-s`, `-source`.
 
 | flags | descriptions  | example |
 | ------------ | ------------ | ------------ |
@@ -49,9 +49,9 @@ The program contains two modes: (1) **Control Mode**, and (2) **Command Mode**. 
 `Control Mode Only` You can move the page up and down by using the `Arrow Up` / `k` and `Arrow Down` / `j` respectively.
 
 #### Command Execution
-`Command Mode Only` To enter **Command Mode**, type `:`. After entered the Command Mode, you can start typing the command. To switch back to Control Mode, press the key `esc`.
+`Command Mode Only` To enter **Command Mode**, type `:`. After entering the Command Mode, you can start typing the command. To switch back to Control Mode, press the key `ESC`.
 
 You can use the listed number on the left to use as the arguments of your command with the format `_index`. To include all the listed items, use the symbol `_0`. For example,
 ```bash
-:vim _1 #It opens the listed file with index 1 in the vim editor 
+: vim _1 #It opens the listed file with index 1 in the vim editor 
 ```

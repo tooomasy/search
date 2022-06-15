@@ -38,7 +38,8 @@ public:
   static bool command_executed;
 
   searcher(const searcher_config &config = searcher_config{})
-      : dir_searcher(config.pathname, config.pattern), display_offset(0) {
+      : dir_searcher(config.pathname, config.pattern, config.max_depth),
+        display_offset(0) {
     std::atexit(searcher::reset_to_default);
   }
   ~searcher() { reset_to_default(); }

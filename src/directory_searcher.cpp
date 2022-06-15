@@ -13,7 +13,10 @@ std::string directory_node::get_complete_name() {
 
 void directory_searcher::search_helper(
     std::shared_ptr<std::vector<directory_node>> res,
-    const std::string &cur_pathname) {
+    const std::string &cur_pathname, int depth) {
+  if (depth == 0)
+    return;
+
   auto dir = opendir(cur_pathname.c_str());
   struct dirent *child;
   while (dir != nullptr && (child = readdir(dir)) != nullptr) {
@@ -37,13 +40,12 @@ void directory_searcher::search_helper(
     if (std::regex_match(std::string(next_path), std::regex(pattern))) {
       res->push_back(node);
     }
-    search_helper(res, next_path);
+    search_helper(res, next_path, depth - 1);
   }
 }
 
-std::shared_ptr<std::vector<directory_node>>
-directory_searcher::query(int depth) {
+std::shared_ptr<std::vector<directory_node>> directory_searcher::query() {
   auto res = std::make_shared<std::vector<directory_node>>();
-  search_helper(res, root_directory);
+  search_helper(res, root_directory, depth);
   return res;
 }

@@ -7,6 +7,7 @@
 #include <cstring>
 #include <iostream>
 #include <iterator>
+#include <stdexcept>
 #include <string>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -41,13 +42,17 @@ searcher_config searcher_config_helper(std::vector<std::string> &arguments) {
     std::string &str = arguments[i];
     if (str[0] == '-') {
       if (i + 1 >= n)
-        throw "invalid arguments";
+        throw std::runtime_error("invalid arguments");
       std::string option_value = arguments[i + 1];
       std::string option_name = str.substr(1, str.size() - 1);
       if (option_name == "s" || option_name == "source") {
         config.pathname = option_value;
-      } else if (option_name == "m" || option_name == "max-depth") {
+      } else if (option_name == "d" || option_name == "depth") {
         config.max_depth = std::stoi(option_value);
+        if (config.max_depth <= 0) {
+          throw std::runtime_error(
+              "option \"-d\" or \"-depth\" must be greater than 0");
+        }
       }
       ++i;
     } else {

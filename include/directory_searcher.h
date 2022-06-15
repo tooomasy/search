@@ -30,15 +30,16 @@ class directory_searcher {
 private:
   const std::string &root_directory;
   const std::string &pattern;
+  int depth;
   void search_helper(std::shared_ptr<std::vector<directory_node>> res,
-                     const std::string &cur_pathname);
+                     const std::string &cur_pathname, int depth);
 
 public:
   directory_searcher(const std::string &_root_directory,
-                     const std::string &_pattern)
-      : root_directory(_root_directory), pattern(_pattern) {}
+                     const std::string &_pattern, int _depth)
+      : root_directory(_root_directory), pattern(_pattern), depth(_depth) {}
 
-  std::shared_ptr<std::vector<directory_node>> query(int depth = -1);
+  std::shared_ptr<std::vector<directory_node>> query();
 
   static void
   print_search_result(std::shared_ptr<std::vector<directory_node>> arr) {
